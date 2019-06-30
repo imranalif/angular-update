@@ -1,0 +1,56 @@
+<div class="panel">
+  <div class="abox">
+    <div class="title">Create User</div>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+ 
+  <div class="container">
+   <input type="hidden" formControlName="id">
+      <mat-form-field>
+          <input matInput placeholder="First Name"  formControlName="firstName" autocomplete="off">
+          <mat-error>
+            This Field is required
+          </mat-error>
+        </mat-form-field>
+ 
+  
+  
+      <mat-form-field >
+          <input matInput placeholder="Last Name"  formControlName="lastName" autocomplete="off">
+        </mat-form-field>
+  
+
+  <mat-form-field>
+      <input matInput placeholder="phone"  formControlName="phone" autocomplete="off">
+    </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="email"  formControlName="email" autocomplete="off">
+    <mat-error>
+      Please enter a valid email
+    </mat-error>
+    <!--
+    <mat-error *ngIf="email.invalid && email.touched">
+      Your email is not right
+    </mat-error>
+    -->
+    
+  </mat-form-field>
+
+ 
+
+  <mat-form-field>
+    <input matInput placeholder="address"  formControlName="address" autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="password" type="password"  formControlName="password" autocomplete="off">
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput placeholder="Confirm Password" type="password"  formControlName="password" autocomplete="off">
+    </mat-form-field>
+    <button mat-button type="submit" class="mat-raised-button mat-primary">Submit</button>
+    
+  </div>
+</form>
+</div>
+</div>
