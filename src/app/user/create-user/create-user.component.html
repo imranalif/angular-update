@@ -1,7 +1,7 @@
 <div class="panel">
   <div class="abox">
     <div class="title">Create User</div>
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="myForm" >
  
   <div class="container">
   
@@ -48,7 +48,7 @@
   <mat-form-field>
       <input matInput placeholder="Confirm Password" type="password"  formControlName="password" autocomplete="off">
     </mat-form-field>
-    <button mat-button type="submit" class="mat-raised-button mat-primary">Submit</button>
+    <button mat-button type="submit" class="mat-raised-button mat-primary" (click)="onSubmit(myForm.value)">Submit</button>
     
   </div>
 </form>

@@ -16,12 +16,17 @@ export class UserService {
      return this.listUser;
    }
    save(user:IUser){
-  if(this.user.id===null){
+
+
+  if(user.id===null){
   const maxId= this.listUser.reduce(function(e1,e2){
       return (e1.id>e1.id) ?e1:e2;
     }).id;
     user.id=maxId+1;
+   
      return this.listUser.push(user)}
+
+
      else{
      const foundIndex= this.listUser.findIndex(e=>e.id===user.id)
      this.listUser[foundIndex]=user;
@@ -39,15 +44,7 @@ if(i!= -1){
  
 }
    }
-   updateUser(id:number){
-     firstName:this.user.firstName;
-     lastName:this.user.lastName;
-     phone:this.user.phone;
-     email:this.user.email;
-     address:this.user.address;
-     password:this.user.password;
-     confirmPassword:this.user.confirmPassword
-   }
+   
   constructor(private fb:FormBuilder) {
     this.myForm=this.fb.group({
       id:[null],
@@ -61,7 +58,5 @@ if(i!= -1){
     ]
     })
    }
-   populateForm(user){
-    this.myForm.setValue(user);
-  }
+ 
 }

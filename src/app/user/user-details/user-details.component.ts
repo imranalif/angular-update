@@ -15,7 +15,7 @@ import {Router} from '@angular/router'
 export class UserDetailsComponent implements OnInit {
   user:IUser;
  dataSource=[]; 
- //dataSource: MatTableDataSource<any>;
+
 users:IUser[]=[
  /* {  id:null,
     firstName:null,
@@ -38,7 +38,7 @@ users:IUser[]=[
    this.users=this._userService.getUser();
    console.log(this.users);
    this.dataSource=this.users;
-  //this.dataSource=new MatTableDataSource(this.users);
+ 
    
   
    
@@ -63,12 +63,7 @@ this._router.navigate(['/edit',id]);
   }
  
   
- /* deleteUser(id:number){
-    const i=this.users.findIndex(e=>e.id===id)
-    if(i!= -1){
-      this.users.splice(i,1);
-    }
-  } */  
+   
     
 }
 

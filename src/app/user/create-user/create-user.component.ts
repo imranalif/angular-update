@@ -31,6 +31,7 @@ user:IUser={
   ngOnInit() {
     
     this.myForm=this.fb.group({
+      id:null,
       firstName:['',[Validators.required,Validators.minLength(5)]],
       lastName:[''],
       email:['',[Validators.required,Validators.email]],
@@ -43,7 +44,7 @@ user:IUser={
     this._route.paramMap.subscribe(parameterMap=>{
       const Id= +parameterMap.get('id');
       this.getUser(Id);
-      console.log(this.user.id)
+      //console.log(this.user.id)
       });
       
       
@@ -64,6 +65,7 @@ user:IUser={
     else
      this.user=Object.assign({},this.userService.getUserId(id));
      this.myForm.patchValue({
+       id:id,
        firstName:this.user.firstName,
        lastName:this.user.lastName,
        phone:this.user.phone,
@@ -72,50 +74,23 @@ user:IUser={
        password:this.user.password,
        confirmPassword:this.user.confirmPassword
      })
-     console.log(this.user);
+    // console.log(this.user);
      
    
   }
-  /*insertUser(user:any){
-    this.users.push(
-    
-    {firstName:user.firstName,
-      lastName:user.lastName,
-      phone:user.phone,
-      email:user.email,
-      address:user.address,
-      password:user.password,
-      confirmPassword:user.confirmPassword}
-    )
-  }*/
-  onSubmit(){
-    //console.log(this.myForm.value);
-    //this.users.push(this.myForm.firstName);
-    // let userData = {
-    //   'firstname': this.myForm.value.firstName,
-    //   'lastname': this.myForm.value.lastName,
-    //   'phone':this.myForm.value.phone,
-    //   'email': this.myForm.value.email,
-    //   'address': this.myForm.value.address,
-    //   'password': this.myForm.value.password
-    // };
-    //console.log(this.users);
-   //alert (this.users.push(this.myForm.value));
-    //this.myForm.reset();
+  
+  onSubmit(user){
+   
+   
 //this.users.push(user);
 //if(this.myForm.value.id==null)
-this.userService.save(this.user);
-//else
-//this.userService.updateUser(this.myForm.value);
-//alert (this.users.push(this.myForm.value));
-//console.log(this.users);
-//this.router.navigate(['/user-details'])
+            this.userService.save(this.myForm.value);
+
+console.log(this.users);
+
 
   }
- /* getUser():IUser[]{
-    return this.users;
-  }*/
-  
+ 
 
   
 }
