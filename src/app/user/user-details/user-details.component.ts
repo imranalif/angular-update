@@ -47,12 +47,10 @@ users:IUser[]=[
   displayedColumns: string[] = ['firstName', 'lastName', 'phone', 'email', 'address', 'password','action'];
 
 
- /* editUser(id:number){
+ editUser(id:number){
 this._router.navigate(['/edit',id]);
-  }*/
-  editUser(id:number){
-    this._userService.populateForm(id);
   }
+  
   //dataSource =this.users;
   deleteUser(id:number){
     if(confirm('are you want to delete')){

@@ -16,10 +16,21 @@ export class UserService {
      return this.listUser;
    }
    save(user:IUser){
-     return this.listUser.push(user)
+  if(this.user.id===null){
+  const maxId= this.listUser.reduce(function(e1,e2){
+      return (e1.id>e1.id) ?e1:e2;
+    }).id;
+    user.id=maxId+1;
+     return this.listUser.push(user)}
+     else{
+     const foundIndex= this.listUser.findIndex(e=>e.id===user.id)
+     this.listUser[foundIndex]=user;
+     }
+
    }
-   getUserId(id:number){
+   getUserId(id:number) : IUser{
     return this.listUser.find(e=>e.id===id);
+   
    }
    delete(id:number,data){
 const i=data.findIndex(e=>e.id===id)

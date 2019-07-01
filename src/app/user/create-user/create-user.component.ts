@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CreateUserComponent implements OnInit {
 myForm:FormGroup;
 users:IUser[]=[];
+
 user:IUser={
   id:null,
   firstName:null,
@@ -28,12 +29,8 @@ user:IUser={
   constructor(private fb:FormBuilder,private userService:UserService,private _route:ActivatedRoute) { }
 
   ngOnInit() {
-    this._route.paramMap.subscribe(parameterMap=>{
-    const id=  +parameterMap.get('id');
-    this.getUser(id);
-    })
+    
     this.myForm=this.fb.group({
-      id:[null],
       firstName:['',[Validators.required,Validators.minLength(5)]],
       lastName:[''],
       email:['',[Validators.required,Validators.email]],
@@ -43,11 +40,41 @@ user:IUser={
       
     ]
     })
+    this._route.paramMap.subscribe(parameterMap=>{
+      const Id= +parameterMap.get('id');
+      this.getUser(Id);
+      console.log(this.user.id)
+      });
+      
+      
   }
   
   getUser(id:number){
-     this.user=this.userService.getUserId(id)
-   ;
+    if (id===0)
+    this.user={
+      id:null,
+      firstName:null,
+      lastName:null,
+      phone:null,
+      email:'',
+      address:null,
+      password:null,
+      confirmPassword:null
+    }
+    else
+     this.user=Object.assign({},this.userService.getUserId(id));
+     this.myForm.patchValue({
+       firstName:this.user.firstName,
+       lastName:this.user.lastName,
+       phone:this.user.phone,
+       email:this.user.email,
+       address:this.user.address,
+       password:this.user.password,
+       confirmPassword:this.user.confirmPassword
+     })
+     console.log(this.user);
+     
+   
   }
   /*insertUser(user:any){
     this.users.push(
@@ -76,10 +103,10 @@ user:IUser={
    //alert (this.users.push(this.myForm.value));
     //this.myForm.reset();
 //this.users.push(user);
-if(this.myForm.value.id==null)
-this.userService.save(this.myForm.value);
-else
-this.userService.updateUser(this.myForm.value);
+//if(this.myForm.value.id==null)
+this.userService.save(this.user);
+//else
+//this.userService.updateUser(this.myForm.value);
 //alert (this.users.push(this.myForm.value));
 //console.log(this.users);
 //this.router.navigate(['/user-details'])
